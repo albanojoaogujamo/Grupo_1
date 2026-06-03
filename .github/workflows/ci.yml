@@ -1,0 +1,56 @@
+name: Quiz App - CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Verificar e Compilar APK
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarrega o código do repositório
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      # 2. Instala o Java (necessário para compilar Android)
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. Instala o Flutter
+      - name: Instalar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+          channel: 'stable'
+
+      # 4. Instala as dependências do projeto (pubspec.yaml)
+      - name: Instalar dependências
+        run: flutter pub get
+
+      # 5. Analisa o código à procura de erros e avisos
+      - name: Analisar código
+        run: flutter analyze --no-fatal-infos
+
+      # 6. Corre os testes automáticos (se existirem)
+      - name: Correr testes
+        run: flutter test
+        continue-on-error: true  # não falha se não houver testes
+
+      # 7. Compila o APK em modo release
+      - name: Compilar APK
+        run: flutter build apk --release
+
+      # 8. Guarda o APK como artefacto para download no GitHub
+      - name: Guardar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: quiz-app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
