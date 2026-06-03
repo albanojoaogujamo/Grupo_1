@@ -47,9 +47,3 @@ class _EcraInicialState extends State<EcraInicial> {
     );
   }
 }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
