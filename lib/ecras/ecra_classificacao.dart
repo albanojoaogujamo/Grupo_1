@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../servicos/servico_api.dart';
+import '../servicos/Servico_api.dart';
 import '../servicos/servico_autenticacao.dart';
-import '../componentes/cartao_pontuacao.dart';
-import '../utilitarios/tema_app.dart';
+import '../componentes/Cartao_pontuacao.dart';
+import '../utilitarios/Tema_app.dart';
 
 class EcraClassificacao extends StatelessWidget {
   const EcraClassificacao({super.key});
