@@ -1,0 +1,45 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarrega o código
+      - uses: actions/checkout@v4
+
+      # 2. Configura o Java (necessário para Android)
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # 3. Instala o Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          cache: true
+
+      # 4. Instala as dependências
+      - run: flutter pub get
+
+      # 5. Analisa o código (erros, warnings)
+      - run: flutter analyze
+
+      # 6. Corre os testes
+      - run: flutter test
+
+      # 7. Compila o APK
+      - run: flutter build apk --release
+
+      # 8. Guarda o APK como artefacto (para download)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

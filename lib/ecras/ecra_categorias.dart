@@ -126,7 +126,7 @@ class _QuadroCategoria extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: cor.withOpacity(0.4),
+              color: cor.withValues(alpha:0.5),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),

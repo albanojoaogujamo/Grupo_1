@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../modelos/pergunta.dart';
 import '../servicos/servico_api.dart';
-import '../servicos/servico_autenticacao.dart';
-import '../componentes/cartao_opcao.dart';
+import 'package:vertice_v1/servicos/servico_autenticacao.dart';
 import '../componentes/barra_progresso.dart';
 import '../utilitarios/tema_app.dart';
 import 'ecra_resultado.dart';
@@ -75,7 +74,7 @@ class _EcraQuizState extends State<EcraQuiz> {
     }
   }
 
-  Widget CartaoOpcao({
+  Widget cartaoOpcao({
     required String texto,
     required bool correta,
     required bool errada,
@@ -145,7 +144,7 @@ class _EcraQuizState extends State<EcraQuiz> {
             const SizedBox(height: 30),
             Text(pergunta.texto, style: TemaApp.estiloPergunta),
             const SizedBox(height: 20),
-            ...pergunta.opcoes.map((opcao) => CartaoOpcao(
+            ...pergunta.opcoes.map((opcao) => cartaoOpcao(
                   texto: opcao,
                   correta: _respondeu &&
                       opcao == pergunta.respostaCorreta,

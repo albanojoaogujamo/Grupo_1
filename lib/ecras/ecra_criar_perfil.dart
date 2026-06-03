@@ -19,8 +19,8 @@ class EcraCriarPerfil extends StatefulWidget {
 
 class _EcraCriarPerfilState extends State<EcraCriarPerfil> {
   final _formKey          = GlobalKey<FormState>();
-  late final _nomeController;
-  late final _emailController;
+ late final TextEditingController _nomeController;
+ late final TextEditingController _emailController;
   final _passwordController = TextEditingController();
   bool _verPassword         = false;
 

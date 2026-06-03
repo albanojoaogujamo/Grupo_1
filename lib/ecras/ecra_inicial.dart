@@ -14,6 +14,7 @@ class _EcraInicialState extends State<EcraInicial> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const EcraPrincipal()),
@@ -46,3 +47,9 @@ class _EcraInicialState extends State<EcraInicial> {
     );
   }
 }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
