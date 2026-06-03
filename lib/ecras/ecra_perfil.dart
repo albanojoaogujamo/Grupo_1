@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import '../utilitarios/tema_app.dart';
 import '../servicos/servico_base_dados.dart';
-import 'Ecra_criar_perfil.dart';
+import 'ecra_criar_perfil.dart';
 
 class EcraPerfil extends StatefulWidget {
   const EcraPerfil({super.key});
